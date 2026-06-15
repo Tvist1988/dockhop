@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dockhop/docker"
+	"github.com/Tvist1988/dockhop/docker"
 
 	"fmt"
 	"io"

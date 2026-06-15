@@ -1,4 +1,4 @@
-module dockhop
+module github.com/Tvist1988/dockhop
 
 go 1.26.3
 
