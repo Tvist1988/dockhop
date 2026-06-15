@@ -1,0 +1,11 @@
+# Compiled binary
+/dockhop
+
+# Go build/test artifacts
+*.exe
+*.test
+*.out
+
+# IDE
+/.idea/
+CLAUDE.md
