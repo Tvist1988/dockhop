@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime/debug"
 	"strings"
 
 	"charm.land/bubbles/v2/key"
@@ -15,8 +16,20 @@ import (
 	"github.com/moby/moby/client"
 )
 
-// version is set at build time via -ldflags "-X main.version=...".
-var version = "dev"
+// version is set by GoReleaser via -ldflags "-X main.version=...".
+// When empty (e.g. installed with `go install`), it falls back to the
+// module version embedded in the binary's build info.
+var version = ""
+
+func getVersion() string {
+	if version != "" {
+		return version
+	}
+	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" {
+		return info.Main.Version
+	}
+	return "dev"
+}
 
 type item string
 
@@ -42,7 +55,7 @@ func main() {
 	if len(os.Args) > 1 {
 		switch os.Args[1] {
 		case "--version", "-v", "version":
-			fmt.Printf("dockhop %s\n", version)
+			fmt.Printf("dockhop %s\n", getVersion())
 			return
 		}
 	}
