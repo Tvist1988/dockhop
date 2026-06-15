@@ -37,3 +37,7 @@ Requires a running Docker daemon and the `docker` CLI on your `PATH`. Only runni
 ```sh
 go build -o dockhop .
 ```
+
+## License
+
+Released under the [MIT License](LICENSE).
